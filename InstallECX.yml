@@ -1,0 +1,63 @@
+name: RunECXInstall
+description: 'This document will install ExpressCluster 5.1 for Windows and install Windows updates. It will then validate the changes before an AMI is created. Then after AMI creation, it will test all the changes.'
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+      - name: DownloadECXScript
+        action: S3Download
+        timeoutSeconds: 60
+        onFailure: Abort
+        maxAttempts: 3
+        inputs:
+          - source: 's3://<bucketname>/install-ecx.ps1'
+            destination: 'C:\install-ecx.ps1'
+
+      - name: RunConfigScript
+        action: ExecutePowerShell
+        timeoutSeconds: 120
+        onFailure: Abort
+        maxAttempts: 3
+        inputs:
+          file: '{{build.DownloadECXScript.inputs[0].destination}}'
+
+      - name: Cleanup
+        action: DeleteFile
+        onFailure: Abort
+        maxAttempts: 3
+        inputs:
+          - path: '{{build.DownloadECXScript.inputs[0].destination}}'
+
+      - name: RebootAfterConfigApplied
+        action: Reboot
+        inputs:
+          delaySeconds: 60
+
+      - name: InstallWindowsUpdates
+        action: UpdateOS
+
+  - name: validate
+    steps:
+      - name: DownloadTestConfigScript
+        action: S3Download
+        timeoutSeconds: 60
+        onFailure: Abort
+        maxAttempts: 3
+        inputs:
+          - source: 's3://<bucketname>/testECXConfig.ps1'
+            destination: 'C:\testECXConfig.ps1'
+
+      - name: ValidateConfigScript
+        action: ExecutePowerShell
+        timeoutSeconds: 120
+        onFailure: Abort
+        maxAttempts: 3
+        inputs:
+          file: '{{validate.DownloadTestConfigScript.inputs[0].destination}}'
+
+      - name: Cleanup
+        action: DeleteFile
+        onFailure: Abort
+        maxAttempts: 3
+        inputs:
+          - path: '{{validate.DownloadTestConfigScript.inputs[0].destination}}'
