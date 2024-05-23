@@ -73,4 +73,4 @@ phases:
         inputs:
           delaySeconds: 60
 ```
-The YAML file and PowerShell scripts can be downloaded from [
+The YAML file and PowerShell scripts can be downloaded from [ECXInstall](ECXInstall).
