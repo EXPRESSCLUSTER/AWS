@@ -73,4 +73,10 @@ phases:
         inputs:
           delaySeconds: 60
 ```
-The YAML file and PowerShell scripts can be downloaded from [ECXInstall](ECXInstall).
+The YAML file and PowerShell scripts can be downloaded from [ECXInstall](ECXInstall). The following files are in this folder:    
+1. **InstallECX.yml**    
+  This YAML file has two phases. In the build phase, it will download the ECX installation script (install-ecx.ps1) from an S3 bucket, run the script, delete it, and reboot the system. The validate phase will download the installation confirmation script (testECXConfig.ps1), run the script, and delete it. If using this YAML script, replace the <bucketname> placeholder with your own bucket name where the files reside.
+2. **install-ecx.ps1**    
+  This PowerShell script will download ExpressCluster X 5.1 from the NEC ExpressCluster website, extract the ExpressCluster files, install the software, and open ports through the firewall.
+3. **testECXConfig.ps1**    
+  This PowerShell script will check to see if the ports required by ExpressCluster are open and if ECX services are running or not.
