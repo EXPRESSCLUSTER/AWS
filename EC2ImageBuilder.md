@@ -80,3 +80,6 @@ The YAML file and PowerShell scripts can be downloaded from [ECXInstall](ECXInst
   This PowerShell script will download ExpressCluster X 5.1 from the NEC ExpressCluster website, extract the ExpressCluster files, install the software, and open ports through the firewall.
 3. **testECXConfig.ps1**    
   This PowerShell script will check to see if the ports required by ExpressCluster are open and if ECX services are running or not.
+
+### Testing the YAML file and scripts without using the EC2 Image Builder
+The YAML file can be tested without running EC2 Image Builder. This makes it simple to test and troubleshoot the YAML file to make sure it works correctly. The **AWS Task Orchestrator and Executor** (AWSTOE) standalone application can be [downloaded](https://docs.aws.amazon.com/imagebuilder/latest/userguide/toe-get-started.html) to run YAML scripts. It can validate the syntax and run the files.
