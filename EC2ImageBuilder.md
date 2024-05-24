@@ -3,7 +3,11 @@ An [AWS website](https://aws.amazon.com/image-builder/faqs/) gives the following
 
 New images can be created and deployed manually or on a set schedule. These images can automatically include the latest OS updates, a number of preset components specified by AWS, or your own components to install and configure custom software. YAML configuration files can be used with PowerShell scripts to install and configure ExpressCluster X on Windows images. These files can be stored in an Amazon S3 bucket and utilized during the image build process.
 
-## YAML
+## Creating an image pipeline
+
+### Component builder
+
+#### YAML
 The YAML component builder includes three possible phases: **build**, **validate**, and **test**. It is not necessary to run each phase. Following is an example of this YAML file syntax:
 ```
 name: "TestDocument-Windows"
@@ -81,7 +85,7 @@ This YAML file has two phases - _build_ and _validate_. In the build phase, it w
 3. **testECXConfig.ps1**    
   This PowerShell script will check to see if the ports required by ExpressCluster are open and if ECX services are running or not.
 
-### Testing the YAML file and scripts without using the EC2 Image Builder
+#### Testing the YAML file and scripts without using the EC2 Image Builder
 The YAML file can be tested without running EC2 Image Builder. This makes it simple to test and troubleshoot the YAML file to make sure it works correctly. The **AWS Task Orchestrator and Executor** (AWSTOE) is a standalone application which can be [downloaded](https://docs.aws.amazon.com/imagebuilder/latest/userguide/toe-get-started.html) to run YAML scripts. The referenced link also has a user's guide. AWSTOE can validate the syntax of a YAML file as well as run it.    
 
 Example syntax to validate a YAML file:  _C:\> awstoe.exe validate --documents C:\<YAML file name>.yml_    
