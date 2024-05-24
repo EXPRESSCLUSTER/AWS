@@ -1,5 +1,5 @@
 # EC2 Image Builder
-An [AWS website](https://aws.amazon.com/image-builder/faqs/) gives the following description of EC2 Image Builder: it \"simplifies the creation, maintenance, validation, sharing, and deployment of Linux or Windows images for use with Amazon EC2 and on-premises.\"    
+An [AWS website](https://aws.amazon.com/image-builder/faqs/) gives the following description of EC2 Image Builder: it \"simplifies the creation, maintenance, validation, sharing, and deployment of Linux or Windows images for use with Amazon EC2 and on-premises.\" This document focuses mainly on Windows images.    
 
 New images can be created and deployed manually or on a set schedule. These images can automatically include the latest OS updates, a number of preset components specified by AWS, or your own components to install and configure custom software. YAML configuration files can be used with PowerShell scripts to install and configure ExpressCluster X on Windows images. These files can be stored in an Amazon S3 bucket and utilized during the image build process.
 
@@ -82,10 +82,10 @@ This YAML file has two phases - _build_ and _validate_. In the build phase, it w
   This PowerShell script will check to see if the ports required by ExpressCluster are open and if ECX services are running or not.
 
 ### Testing the YAML file and scripts without using the EC2 Image Builder
-The YAML file can be tested without running EC2 Image Builder. This makes it simple to test and troubleshoot the YAML file to make sure it works correctly. The **AWS Task Orchestrator and Executor** (AWSTOE) is a standalone application which can be [downloaded](https://docs.aws.amazon.com/imagebuilder/latest/userguide/toe-get-started.html) to run YAML scripts. It can validate the syntax as well as run the files.    
+The YAML file can be tested without running EC2 Image Builder. This makes it simple to test and troubleshoot the YAML file to make sure it works correctly. The **AWS Task Orchestrator and Executor** (AWSTOE) is a standalone application which can be [downloaded](https://docs.aws.amazon.com/imagebuilder/latest/userguide/toe-get-started.html) to run YAML scripts. The referenced link also has a user's guide. AWSTOE can validate the syntax of a YAML file as well as run it.    
 
 Example syntax to validate a YAML file:  _C:\> awstoe.exe validate --documents C:\<YAML file name>.yml_    
 Example syntax to run all phases in a YAML file:  _C:\>awstoe run --documents InstallECX.yml_    
 
-Note that it is easier to run awstoe from an AWS instance if you will be accessing scripts from an S3 bucket.
+Note that it is easier to run awstoe from an AWS instance if you will be accessing scripts from an S3 bucket. Otherwise credentials will have to be set.
 
