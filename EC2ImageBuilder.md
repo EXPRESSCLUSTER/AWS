@@ -87,5 +87,5 @@ The YAML file can be tested without running EC2 Image Builder. This makes it sim
 Example syntax to validate a YAML file:  _C:\> awstoe.exe validate --documents C:\<YAML file name>.yml_    
 Example syntax to run all phases in a YAML file:  _C:\>awstoe run --documents InstallECX.yml_    
 
-Note that it is easier to run awstoe from an AWS instance if you will be accessing scripts from an S3 bucket. Otherwise credentials will have to be set.
+Note that it is easier to run awstoe from an AWS instance if you will be accessing scripts from an S3 bucket. Otherwise credentials will have to be set. Log files are created when a YAML file runs. This helps in troubleshooting any issues.
 
