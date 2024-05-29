@@ -87,7 +87,7 @@ This YAML file has two phases - _build_ and _validate_. In the build phase, it w
 3. **testECXConfig.ps1**    
   This PowerShell script will check to see if the ports required by ExpressCluster are open and if ECX services are running or not.
 
-#### Testing the YAML file and scripts without using the EC2 Image Builder
+#### Testing the YAML file and scripts without using EC2 Image Builder
 The YAML file can be tested without running EC2 Image Builder. This makes it simple to test and troubleshoot the YAML file to make sure it works correctly. The **AWS Task Orchestrator and Executor** (AWSTOE) is a standalone application which can be [downloaded](https://docs.aws.amazon.com/imagebuilder/latest/userguide/toe-get-started.html) to run YAML scripts. The referenced link also has a user's guide. AWSTOE can validate the syntax of a YAML file as well as run it.    
 
 Note that it is easier to run awstoe from an AWS instance if you will be accessing scripts from an S3 bucket. Otherwise credentials will have to be set. Log files are created when a YAML file runs. This helps in troubleshooting any issues.
