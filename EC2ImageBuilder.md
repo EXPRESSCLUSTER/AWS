@@ -1,13 +1,13 @@
 # EC2 Image Builder
 An [AWS website](https://aws.amazon.com/image-builder/faqs/) gives the following description of EC2 Image Builder: it \"simplifies the creation, maintenance, validation, sharing, and deployment of Linux or Windows images for use with Amazon EC2 and on-premises.\" This document focuses mainly on using EC2 Image Builder for automating the creation of Windows images.    
 
-New images can be created and deployed manually or on a set schedule with EC2 Image Builder. These images can automatically include the latest OS updates, a number of preset components specified by AWS, or your own components to install and configure custom software. YAML configuration files can be used with PowerShell scripts to install and configure ExpressCluster X on Windows images. These files can be stored in an Amazon S3 bucket and utilized during the image build process.
+New images can be created and deployed manually or on a set schedule with EC2 Image Builder. These images can automatically include the latest OS updates, a number of preset components specified by AWS, or your own components to install and configure custom software. YAML configuration files can be used with PowerShell scripts to install and configure ExpressCluster X on Windows images. These PowerShell scripts can be stored in an Amazon S3 bucket and utilized during the image build process.
 
 ## Create an image pipeline
 Amazon provides instructions on how to [Create an image pipeline using the EC2 Image Builder console wizard](https://docs.aws.amazon.com/imagebuilder/latest/userguide/start-build-image-pipeline.html)
 
 ### Component builder
-There is a Components section which is part of the process of creating a recipe. This is where YAML script code can be inserted to enable the automatic installation of ExpressCluster to the image to be created. The next section describes how to create a YAML code to configure the image with ExpressCluster. 
+There is a Components section which is part of the process of creating a recipe. This is where YAML script code can be inserted to enable the automatic installation of ExpressCluster to the image to be created. The next section describes how to create YAML code to configure the image with ExpressCluster. 
 
 #### YAML
 The YAML component builder includes three possible phases: **build**, **validate**, and **test**. It is not necessary to run each phase. Following is an example of this YAML file syntax:
