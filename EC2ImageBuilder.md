@@ -7,7 +7,7 @@ New images can be created and deployed manually or on a set schedule with EC2 Im
 Amazon provides instructions on how to [Create an image pipeline using the EC2 Image Builder console wizard](https://docs.aws.amazon.com/imagebuilder/latest/userguide/start-build-image-pipeline.html).
 
 ### Component builder
-There is a Components section which is part of the process of creating a recipe. This is where YAML script code can be inserted to enable the automatic installation of ExpressCluster to the image to be created. The next section describes how to create YAML code to execute a PowerShell script which can install and configure ExpressCluster on the new image.
+There is a **Components** section which is part of the process of creating a recipe for image creation. This section is where YAML script code can be inserted to enable the automatic installation of ExpressCluster to the image to be created. The next section describes how to create YAML code to execute a PowerShell script which can install and configure ExpressCluster on the new image.
 
 #### YAML
 The YAML component builder includes three possible phases: **build**, **validate**, and **test**. It is not necessary to run each phase. Following is an example of this YAML file syntax:
