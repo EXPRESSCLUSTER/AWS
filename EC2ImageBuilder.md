@@ -1,7 +1,7 @@
 # EC2 Image Builder
 An [AWS website](https://aws.amazon.com/image-builder/faqs/) gives the following description of EC2 Image Builder: it \"simplifies the creation, maintenance, validation, sharing, and deployment of Linux or Windows images for use with Amazon EC2 and on-premises.\" This document focuses mainly on using EC2 Image Builder for automating the creation of Windows images.    
 
-New images can be created and deployed manually or on a set schedule with EC2 Image Builder. These images can automatically include the latest OS updates, a number of preset components specified by AWS, or your own components to install and configure custom software. YAML configuration files can be used with PowerShell scripts to install and configure ExpressCluster X on Windows images. These PowerShell scripts can be stored in an Amazon S3 bucket and utilized during the image build process.
+New images can be created and deployed manually or on a set schedule with EC2 Image Builder. These images can automatically include the latest OS updates, a number of preset components specified by AWS, or your own components to install and configure custom software. YAML configuration files can be used with PowerShell scripts to install and configure ExpressCluster X on Windows images. These PowerShell scripts can be stored in an Amazon S3 bucket and utilized during the image build process. The first step of automation is to build an image pipeline.
 
 ## Create an image pipeline
 Amazon provides instructions on how to [Create an image pipeline](https://docs.aws.amazon.com/imagebuilder/latest/userguide/start-build-image-pipeline.html) using the EC2 Image Builder console wizard.
