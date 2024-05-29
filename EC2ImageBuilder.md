@@ -96,12 +96,26 @@ Note that it is easier to run awstoe from an AWS instance if you will be accessi
 1. Copy the PowerShell scripts to your S3 bucket.
 2. Create a role to allow access to the scripts in your S3 bucket.
 3. Assign the newly created role to the instance on which you will be testing the YAML script.
-4. Copy the YAML script file to a location on your instance.
+4. Edit the YAML script and change the bucket name place holder with the name of your bucket. e.g. s3://ecxbucket/install-ecx.ps1
+5. Copy the YAML script file to a location on your instance.
+6. Download the AWSTOE application to your instance.
+7. Run the YAML file as a parameter for the AWSTOE application.  e.g. C:\> awstoe.exe run --documents InstallECX.yml
+8. View the log files which will be created in a subdirectory from where awstoe.exe is run from.
 
 Example syntax to validate a YAML file:  _C:\> awstoe.exe validate --documents C:\<YAML file name>.yml_    
 Example syntax to run all phases in a YAML file:  _C:\>awstoe run --documents InstallECX.yml_    
 
 ## Addendum
+### Create an IAM instance profile that grants access to Amazon S3
+1. Open the [IAM console](https://console.aws.amazon.com/iam).
+2. Choose **Roles**, and then choose **Create role**.
+3. Select **AWS Service** as the Trusted entity type, and then choose **EC2** under **Use Case**.    
+   (Allows EC2 instances to call AWS services on your behalf)
+4. Click **Next** for **Permissions**.
+5. Search for *AmazonS3ReadOnlyAccess* and then select this policy.    
+   This policy provides read only access to all buckets via the AWS Management Console.)
+6. Click **Next** for **Role details**.
+7. Enter a **Role name** e.g. *AWSInstanceS3ReadAccess* and click **Create role**.
 
 ## Links
 [What is EC2 Image Builder?](https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html)
