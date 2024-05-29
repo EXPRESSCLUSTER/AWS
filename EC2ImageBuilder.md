@@ -95,7 +95,7 @@ Note that it is easier to run awstoe from an AWS instance if you will be accessi
 ##### Prerequisites to running a YAML file on an EC2 instance
 1. Copy the PowerShell scripts to your S3 bucket.
 2. [Create a role](#Create-an-IAM-role-that-grants-access-to-Amazon-S3-from-an-instance) to allow access to the scripts in your S3 bucket.
-3. Assign the newly created role to the instance on which you will be testing the YAML script.
+3. [Assign the newly created role to the instance](#Attach-the-IAM-role-to-the-EC2-instance) on which you will be testing the YAML script.
 4. Edit the YAML script and change the bucket name place holder with the name of your bucket. e.g. s3://ecxbucket/install-ecx.ps1
 5. Copy the YAML script file to a location on your instance.
 6. Download the AWSTOE application to your instance.
@@ -117,8 +117,8 @@ Example syntax to run all phases in a YAML file:  _C:\>awstoe run --documents In
 6. Click **Next** for **Role details**.
 7. Enter a **Role name** e.g. *AWSInstanceS3ReadAccess* and click **Create role**.
 
-### Attach the IAM instance profile to the EC2 instance
-1. Open the Amazon EC2 console.
+### Attach the IAM role to the EC2 instance
+1. Open the [Amazon EC2 console](https://console.aws.amazon.com/ec2).
 2. Choose **Instances**.
 3. Select the instance that you want to attach the IAM role to.
 4. Choose the **Actions** tab, choose **Security**, and then choose **Modify IAM role**.
