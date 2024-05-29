@@ -126,5 +126,5 @@ Example syntax to run all phases in a YAML file:  _C:\>awstoe run --documents In
 
 
 ## Links
-[What is EC2 Image Builder?](https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html)
+[What is EC2 Image Builder?](https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html)    
 [EC2 Image Builder console landing page](https://console.aws.amazon.com/imagebuilder/).
