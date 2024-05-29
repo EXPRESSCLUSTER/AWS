@@ -4,7 +4,7 @@ An [AWS website](https://aws.amazon.com/image-builder/faqs/) gives the following
 New images can be created and deployed manually or on a set schedule with EC2 Image Builder. These images can automatically include the latest OS updates, a number of preset components specified by AWS, or your own components to install and configure custom software. YAML configuration files can be used with PowerShell scripts to install and configure ExpressCluster X on Windows images. These PowerShell scripts can be stored in an Amazon S3 bucket and utilized during the image build process.
 
 ## Create an image pipeline
-Amazon provides instructions on how to [Create an image pipeline](https://docs.aws.amazon.com/imagebuilder/latest/userguide/start-build-image-pipeline.html) using the EC2 Image Builder console wizard].
+Amazon provides instructions on how to [Create an image pipeline](https://docs.aws.amazon.com/imagebuilder/latest/userguide/start-build-image-pipeline.html) using the EC2 Image Builder console wizard.
 
 ### Component builder
 There is a **Components** section which is part of the process of creating a recipe for image creation. This section is where YAML script code can be inserted to enable the automatic installation of ExpressCluster to the image to be created. The next section describes how to create YAML code to execute a PowerShell script which can install and configure ExpressCluster on the new image.
