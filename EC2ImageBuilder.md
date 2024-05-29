@@ -7,7 +7,7 @@ New images can be created and deployed manually or on a set schedule with EC2 Im
 Amazon provides instructions on how to [Create an image pipeline using the EC2 Image Builder console wizard](https://docs.aws.amazon.com/imagebuilder/latest/userguide/start-build-image-pipeline.html)
 
 ### Component builder
-There is a Components section which is part of the process of creating a recipe. This is where YAML script code can be inserted to enable the automatic installation of ExpressCluster to the image to be created. The next section describes how to create YAML code to configure the image with ExpressCluster. 
+There is a Components section which is part of the process of creating a recipe. This is where YAML script code can be inserted to enable the automatic installation of ExpressCluster to the image to be created. The next section describes how to create YAML code to install and configure ExpressCluster on the new image.
 
 #### YAML
 The YAML component builder includes three possible phases: **build**, **validate**, and **test**. It is not necessary to run each phase. Following is an example of this YAML file syntax:
@@ -94,7 +94,7 @@ Note that it is easier to run awstoe from an AWS instance if you will be accessi
 
 ##### Prerequisites to running a YAML file on an EC2 instance
 1. Copy the PowerShell scripts to your S3 bucket.
-2. Create a role to allow access to the scripts in your S3 bucket.
+2. [Create a role](#Create-an-IAM-role-that-grants-access-to-Amazon-S3-from-an-instance) to allow access to the scripts in your S3 bucket.
 3. Assign the newly created role to the instance on which you will be testing the YAML script.
 4. Edit the YAML script and change the bucket name place holder with the name of your bucket. e.g. s3://ecxbucket/install-ecx.ps1
 5. Copy the YAML script file to a location on your instance.
@@ -106,16 +106,24 @@ Example syntax to validate a YAML file:  _C:\> awstoe.exe validate --documents C
 Example syntax to run all phases in a YAML file:  _C:\>awstoe run --documents InstallECX.yml_    
 
 ## Addendum
-### Create an IAM instance profile that grants access to Amazon S3
+### Create an IAM role that grants access to Amazon S3 from an instance
 1. Open the [IAM console](https://console.aws.amazon.com/iam).
 2. Choose **Roles**, and then choose **Create role**.
 3. Select **AWS Service** as the Trusted entity type, and then choose **EC2** under **Use Case**.    
    (Allows EC2 instances to call AWS services on your behalf)
 4. Click **Next** for **Permissions**.
 5. Search for *AmazonS3ReadOnlyAccess* and then select this policy.    
-   This policy provides read only access to all buckets via the AWS Management Console.)
+   (This policy provides read only access to all buckets via the AWS Management Console.)
 6. Click **Next** for **Role details**.
 7. Enter a **Role name** e.g. *AWSInstanceS3ReadAccess* and click **Create role**.
+
+### Attach the IAM instance profile to the EC2 instance
+1. Open the Amazon EC2 console.
+2. Choose **Instances**.
+3. Select the instance that you want to attach the IAM role to.
+4. Choose the **Actions** tab, choose **Security**, and then choose **Modify IAM role**.
+5. Select the IAM role that you just created (e.g. AWSInstanceS3ReadAccess), and then choose **Save**. The IAM role is assigned to your EC2 instance, allowing access to your S3 bucket.
+
 
 ## Links
 [What is EC2 Image Builder?](https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html)
