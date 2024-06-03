@@ -79,7 +79,7 @@ phases:
         inputs:
           delaySeconds: 60
 ```
-The YAML file and PowerShell scripts can be downloaded from [ECXInstall](ECXInstall). The following files are in this folder:    
+The YAML file and PowerShell scripts can be downloaded from [ECXInstall](ECXInstall). Upload them to your S3 bucket. The following files are in this folder:    
 1. **InstallECX.yml**    
 This YAML file has two phases - _build_ and _validate_. In the build phase, it will download the ECX installation script (install-ecx.ps1) from an S3 bucket, run the script, delete it, and reboot the system. The validate phase will download the installation confirmation script (testECXConfig.ps1), run the script, and delete it. If using this YAML script, replace the <bucketname> placeholder with your own bucket name where the files reside.
 2. **install-ecx.ps1**    
