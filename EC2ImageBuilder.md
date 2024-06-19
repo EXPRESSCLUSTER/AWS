@@ -105,6 +105,23 @@ Note that it is easier to run awstoe from an AWS instance if you will be accessi
 Example syntax to validate a YAML file:  _C:\> awstoe.exe validate --documents C:\<YAML file name>.yml_    
 Example syntax to run all phases in a YAML file:  _C:\>awstoe run --documents InstallECX.yml_    
 
+### Linux
+A YAML file was created to install ExpressCluster on Red Hat Linux. When run without parameters, it will use the default values, which will install ExpressCluster X v5.2. The name of your S3 bucket will most likely differ, so that parameter will need to change. Before running the YAML script, be sure to upload the ExpressCluster .rpm file (e.g. expresscls-5.2.0-1.x86_64.rpm) and the Alert, Base, and Replication license files to your S3 bucket. This script does the following:    
+1. Creates a temporary folder to download files from the S3 bucket.
+2. Downloads the ExpressCluster installation packet from the bucket.
+3. Installs ExpressCluster.
+4. Downloads the three license files from the bucket.
+5. Registers the license files.
+6. Checks to see if firewalld is running and if not, will install and enable it.
+7. Runs a script to open ports through the firewall.
+8. Disables SELinux.
+9. Disables caching of repositories.
+10. Deletes the temporary folder.
+11. Reboots the system.
+12. Verifies that license files were registered, gets the SELINUX state, checks if the firewall is running or not, and checks if the ExpressCluster ports were opened.
+
+[Download RHEL.yml](ECXInstall/RHEL.yml)
+
 ## Addendum
 ### Create an IAM role that grants access to Amazon S3 from an instance
 1. Open the [IAM console](https://console.aws.amazon.com/iam).
