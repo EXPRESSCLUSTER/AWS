@@ -146,6 +146,11 @@ I was able to start the ECX installation using yaml and powershell scripts. Howe
 
 One reason is that an error occurred in the authentication key settings, and the correct authentication key needs to be set. The other reason is whether AWSTOE was installed correctly in the first place. A TLS1.2 or later environment is required, so I will check the startup of AWSTOE on another machine.
 
+### test
+I was able to install ECX by using a different machine.
+I found a problem with the previous machine where the environment variables used in powershell were not being inherited. More details later.
+
 ## Links
 [What is EC2 Image Builder?](https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html)    
 [EC2 Image Builder console landing page](https://console.aws.amazon.com/imagebuilder/).
+[Manual set up to develop custom components with AWSTOE](https://docs.aws.amazon.com/imagebuilder/latest/userguide/toe-get-started.html)
