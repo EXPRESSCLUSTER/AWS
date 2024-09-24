@@ -152,5 +152,5 @@ I found a problem with the previous machine where the environment variables used
 
 ## Links
 [What is EC2 Image Builder?](https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html)    
-[EC2 Image Builder console landing page](https://console.aws.amazon.com/imagebuilder/).
+[EC2 Image Builder console landing page](https://console.aws.amazon.com/imagebuilder/).    
 [Manual set up to develop custom components with AWSTOE](https://docs.aws.amazon.com/imagebuilder/latest/userguide/toe-get-started.html)
