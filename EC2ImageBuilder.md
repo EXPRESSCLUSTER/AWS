@@ -146,10 +146,16 @@ I was able to start the ECX installation using yaml and powershell scripts. Howe
 
 One reason is that an error occurred in the authentication key settings, and the correct authentication key needs to be set. The other reason is whether AWSTOE was installed correctly in the first place. A TLS1.2 or later environment is required, so I will check the startup of AWSTOE on another machine.
 
-### test
-I was able to install ECX by using a different machine.
-I found a problem with the previous machine where the environment variables used in powershell were not being inherited. More details later.
+### Problem
+The installation of CLUSTERPRO did not complete due to a problem with the TLS version and environment variables. TLS version 1.2 or later is recommended, so set it accordingly.
 
+### AWSTOE Procedure
+The following procedure is a detailed explanation of step 6 in [Prerequisites to running a YAML file on an EC2 instance]
+1. **Install AWSTOE**  
+   To install AWSTOE, choose the appropriate download link for your architecture and platform. For the full list of application download links, see AWSTOE downloads.
+2. **Set AWS credentials**  
+   AWSTOE requires AWS credentials to connect to Amazon S3
+3. **Validate AWSTOE components**  
 ## Links
 [What is EC2 Image Builder?](https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html)    
 [EC2 Image Builder console landing page](https://console.aws.amazon.com/imagebuilder/).    
