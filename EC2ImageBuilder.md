@@ -121,6 +121,7 @@ A YAML file was created to install ExpressCluster on Red Hat Linux. When run wit
 12. Verifies that license files were registered, gets the SELINUX state, checks if the firewall is running or not, and checks if the ExpressCluster ports were opened.
 
 [Download RHEL.yml](ECXInstall/Linux/RHEL.yml)
+[Download Ubuntu, Amazon Linux 2, Amazon Linux 2023 x86, Amazon Linux 2023 arm64](ECXInstall\Linux)
 
 ## Addendum
 ### Create an IAM role that grants access to Amazon S3 from an instance
