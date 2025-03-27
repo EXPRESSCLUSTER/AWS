@@ -1,0 +1,93 @@
+name: InstallECXonLinux
+description: 'This document will download and install ECX on Ubuntu.'
+schemaVersion: 1.0
+parameters:
+  - ECXdeb:
+      type: string
+      default: 'expresscls-5.2.0-1.amd64.deb'
+      description: ExpressCluster installation rpm file
+  - LicAlrt:
+      type: string
+      default: 'X5_Alrt_Lin.key'
+      description: ExpressCluster Alert Service license
+  - LicBase:
+      type: string
+      default: 'X5_Base_Lin.key'
+      description: ExpressCluster Base license
+  - LicRepl:
+      type: string
+      default: 'X5_Repl_Lin.key'
+      description: ExpressCluster Replication license
+  - S3Bucket:
+      type: string
+      default: 'ecxbucket'
+      description: AWS S3 Bucket
+
+phases:
+  - name: build
+    steps:
+      - name: CreateTempFolder
+        action: CreateFolder
+        timeoutSeconds: 60
+        onFailure: Abort
+        maxAttempts: 3
+        inputs:
+          - path: /tmp/ecxinstall
+
+      - name: GetDetails
+        action: ExecuteBash
+        inputs:
+          commands:
+            - 'echo Created folder is: {{build.CreateTempFolder.inputs[0].path}}'
+            - 'uname -r'
+            - 'cat /etc/os-release'
+
+      - name: DownloadECXInstall
+        action: S3Download
+        onFailure: Abort
+        inputs:
+          - source: 's3://{{S3Bucket}}/{{ECXdeb}}'
+            destination: '{{build.CreateTempFolder.inputs[0].path}}/{{ECXdeb}}'
+
+      - name: InstallECX
+        action: ExecuteBash
+        onFailure: Abort
+        inputs:
+          commands:
+            - 'sudo dpkg -i {{ build.DownloadECXInstall.inputs[0].destination }}'
+
+      - name: DownloadLicenses
+        action: S3Download
+        onFailure: Abort
+        inputs:
+          - source: 's3://{{S3Bucket}}/{{LicAlrt}}'
+            destination: '{{build.CreateTempFolder.inputs[0].path}}/{{LicAlrt}}'
+          - source: 's3://{{S3Bucket}}/{{LicBase}}'
+            destination: '{{build.CreateTempFolder.inputs[0].path}}/{{LicBase}}'
+          - source: 's3://{{S3Bucket}}/{{LicRepl}}'
+            destination: '{{build.CreateTempFolder.inputs[0].path}}/{{LicRepl}}'
+
+      - name: RegLicenses
+        action: ExecuteBash
+        onFailure: Abort
+        inputs:
+          commands:
+            - sudo clplcnsc -i {{build.CreateTempFolder.inputs[0].path}}/*.key
+
+      - name: CleanUp
+        action: DeleteFolder
+        onFailure: Abort
+        maxAttempts: 3
+        inputs:
+          - path: '{{build.CreateTempFolder.inputs[0].path}}'
+            force: true
+
+  - name: validate
+    steps:
+      - name: GetDetails2
+        action: ExecuteBash
+        inputs:
+          commands:
+            - echo "ExpressCluster licenses"
+            - sudo clplcnsc -l | grep -i 'cluster'
+            - uname -a
