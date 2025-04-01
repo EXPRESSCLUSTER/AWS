@@ -142,7 +142,22 @@ A YAML file was created to install ExpressCluster on Red Hat Linux. When run wit
 4. Choose the **Actions** tab, choose **Security**, and then choose **Modify IAM role**.
 5. Select the IAM role that you just created (e.g. AWSInstanceS3ReadAccess), and then choose **Save**. The IAM role is assigned to your EC2 instance, allowing access to your S3 bucket.
 
+## Yoshida Research (Uneder edit)
+I was able to start the ECX installation using yaml and powershell scripts. However, due to awstoe, the ECX installation did not complete. The cause is still under investigation, but I will summarize it briefly.
 
+One reason is that an error occurred in the authentication key settings, and the correct authentication key needs to be set. The other reason is whether AWSTOE was installed correctly in the first place. A TLS1.2 or later environment is required, so I will check the startup of AWSTOE on another machine.
+
+### Problem
+The installation of CLUSTERPRO did not complete due to a problem with the TLS version and environment variables. TLS version 1.2 or later is recommended, so set it accordingly.
+
+### AWSTOE Procedure
+The following procedure is a detailed explanation of step 6 in [Prerequisites to running a YAML file on an EC2 instance]
+1. **Install AWSTOE**  
+   To install AWSTOE, choose the appropriate download link for your architecture and platform. For the full list of application download links, see AWSTOE downloads.
+2. **Set AWS credentials**  
+   AWSTOE requires AWS credentials to connect to Amazon S3
+3. **Validate AWSTOE components**  
 ## Links
 [What is EC2 Image Builder?](https://docs.aws.amazon.com/imagebuilder/latest/userguide/what-is-image-builder.html)    
-[EC2 Image Builder console landing page](https://console.aws.amazon.com/imagebuilder/).
+[EC2 Image Builder console landing page](https://console.aws.amazon.com/imagebuilder/).    
+[Manual set up to develop custom components with AWSTOE](https://docs.aws.amazon.com/imagebuilder/latest/userguide/toe-get-started.html)
