@@ -151,7 +151,7 @@ One reason is that an error occurred in the authentication key settings, and the
 The installation of CLUSTERPRO did not complete due to a problem with the TLS version and environment variables. TLS version 1.2 or later is recommended, so set it accordingly.
 
 ### AWSTOE Procedure
-The following procedure is a detailed explanation of step 6 in [Prerequisites to running a YAML file on an EC2 instance]
+The following procedure is a detailed explanation of step 6 in [Prerequisites to running a YAML file on an EC2 instance](#prerequisites-to-running-a-yaml-file-on-an-ec2-instance).
 1. **Install AWSTOE**  
    To install AWSTOE, choose the appropriate download link for your architecture and platform. For the full list of application download links, see AWSTOE downloads.
 2. **Set AWS credentials**  
