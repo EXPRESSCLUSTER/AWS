@@ -16,8 +16,8 @@ The [ECXInstall](ECXInstall) folder contains the scripts and YAML component file
 
 | File | Platform | Description |
 |---|---|---|
-| `InstallECX.yml` | Windows | EC2 Image Builder component: downloads and installs EXPRESSCLUSTER X 5.2 and validates the installation. |
-| `install-ecx.ps1` | Windows | Downloads EXPRESSCLUSTER X 5.2 from the NEC website, installs it silently, and opens required firewall ports. |
+| `InstallECX.yml` | Windows | EC2 Image Builder component: downloads EXPRESSCLUSTER X installation script, validation script, and license files. Runs scripts. |
+| `install-ecx.ps1` | Windows | Downloads EXPRESSCLUSTER X 5.2 from the NEC website, installs it silently, registers license files, and opens required firewall ports. |
 | `testECXConfig.ps1` | Windows | Validates that EXPRESSCLUSTER firewall rules are in place and services are running. |
 | `Linux/RHEL.yml` | RHEL (x86_64) | EC2 Image Builder component: installs EXPRESSCLUSTER X 5.2 on Red Hat Enterprise Linux. |
 | `Linux/AMZNLIN2.yml` | Amazon Linux 2 (x86_64) | EC2 Image Builder component: installs EXPRESSCLUSTER X 5.2 on Amazon Linux 2. |
