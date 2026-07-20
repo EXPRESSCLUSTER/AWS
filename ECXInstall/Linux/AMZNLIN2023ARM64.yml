@@ -1,5 +1,5 @@
 name: InstallECXonLinux
-description: 'This document will download and install ECX from an S3 bucket on Amazon Linux 2023 ARM64. Change the ecxbucket variable to match your bucket name.'
+description: 'This document will download and install ECX from an S3 bucket onto Amazon Linux 2023 ARM64. Change the ecxbucket variable to match your bucket name.'
 schemaVersion: 1.0
 parameters:
   - ECXrpm:
