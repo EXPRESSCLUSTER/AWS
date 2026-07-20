@@ -1,5 +1,5 @@
 name: InstallECXonLinux
-description: 'This document will download and install ECX on Ubuntu.'
+description: 'This document will download and install ECX from an S3 bucket onto Ubuntu. Change the ecxbucket variable to match your bucket name.'
 schemaVersion: 1.0
 parameters:
   - ECXdeb:
