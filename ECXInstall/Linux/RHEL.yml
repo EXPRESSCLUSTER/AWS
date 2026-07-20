@@ -1,5 +1,5 @@
 name: InstallECXonLinux
-description: 'This document will download and install ECX on RedHat Linux.'
+description: 'This document will download and install ECX from an S3 bucket on RedHat Linux. Change the ecxbucket variable to match your bucket name.'
 schemaVersion: 1.0
 parameters:
   - ECXrpm:
