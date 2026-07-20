@@ -1,14 +1,14 @@
 <# 
      .SYNOPSIS 
-         This script silently installs ExpressCluster and opens ports in the firewall for Cluster 5.1
+         This script silently installs ExpressCluster and opens ports in the firewall for Cluster 5.2
 #>
 
 # Variables
 $path_temp = "c:\temp"
 $path_install = "c:\temp\install"
 $path_bin = "C:\Program Files\EXPRESSCLUSTER\bin"
-$ECX_URL = "https://www.nec.com/en/global/prod/expresscluster/en/trial/zip/ecx51w_x64.zip"
-#$ECX_URL = "<local path to zip>\ecx51w_x64.zip"
+$ECX_URL = "https://www.nec.com/en/global/prod/expresscluster/en/zip/ecx52w_x64.zip"
+#$ECX_URL = "<local path to zip>\ecx52w_x64.zip"
 $logfile = "Install_Log.txt"
 $ECXinstalllog = "ECXLog.txt"
 
@@ -89,6 +89,7 @@ $PRODUCTNAME = $DISP_PRODUCTNAME.DisplayName
 Write-Output "Opening EXPRESSCLUSTER ports through firewall." | Out-File -FilePath "$path_temp\$logfile" -Append
 
 # Firewall 
+ #Manual steps to open ports through firewall (if preferred)
  # Server to Server
 # netsh advfirewall firewall add rule name="EXPRESSCLUSTER Internal Communication" dir=in protocol=TCP localport=29001 action=allow *> $null
 # netsh advfirewall firewall add rule name="EXPRESSCLUSTER Data Forwarding" dir=in protocol=TCP localport=29002 action=allow *> $null
@@ -105,6 +106,7 @@ Write-Output "Opening EXPRESSCLUSTER ports through firewall." | Out-File -FilePa
  # Cluster WebUI to Server
 # netsh advfirewall firewall add rule name="EXPRESSCLUSTER HTTP Connection" dir=in protocol=TCP localport=29003 action=allow *> $null
 
+#Script to open ports through firewall
   Set-Location -Path $path_bin
   Write-Output "Current directory is: $(Get-Location)" | Out-File -FilePath "$path_temp\$logfile" -Append
   Start-Process -FilePath .\clpfwctrl.bat -ArgumentList "--add" -Wait
