@@ -1,6 +1,27 @@
 name: RunECXInstall
-description: 'This document will install ExpressCluster 5.1 for Windows and install Windows updates. It will then validate the changes before an AMI is created. Then after AMI creation, it will test all the changes.'
+description: 'This document will install ExpressCluster 5.2 for Windows (by running an installation script) and install Windows updates. It will then validate the changes before an AMI is created. Then after the AMI creation, it will test all the changes before running a final file cleanup.'
 schemaVersion: 1.0
+parameters:
+  - ECXInstall:
+      type: string
+      default: 'install-ecx.ps1'
+      description: ExpressCluster installation script
+  - ECXTestScript:
+      type: string
+      default: 'testECXConfig.ps1'
+      description: Confirm installation script
+  - BaseLicenseKey:
+      type: string
+      default: 'X5x_Base.key'
+      description: ECX Base license key
+  - AlrtLicenseKey:
+      type: string
+      default: 'X5x_ALRT.key'
+      description: ECX Alert license key
+  - ReplLicenseKey:
+      type: string
+      default: 'X5x_REPL.key'
+      description: ECX Replication license key
 phases:
   - name: build
     steps:
@@ -10,8 +31,14 @@ phases:
         onFailure: Abort
         maxAttempts: 3
         inputs:
-          - source: 's3://<bucketname>/install-ecx.ps1'
-            destination: 'C:\install-ecx.ps1'
+          - source: 's3://ecxbucket/{{ECXInstall}}'
+            destination: 'C:\{{ECXInstall}}'
+          - source: 's3://ecxbucket/{{AlrtLicenseKey}}'
+            destination: 'C:\{{AlrtLicenseKey}}'
+          - source: 's3://ecxbucket/{{BaseLicenseKey}}'
+            destination: 'C:\{{BaseLicenseKey}}'
+          - source: 's3://ecxbucket/{{ReplLicenseKey}}'
+            destination: 'C:\{{ReplLicenseKey}}'
 
       - name: RunConfigScript
         action: ExecutePowerShell
@@ -27,6 +54,9 @@ phases:
         maxAttempts: 3
         inputs:
           - path: '{{build.DownloadECXScript.inputs[0].destination}}'
+          - path: '{{build.DownloadECXScript.inputs[1].destination}}'
+          - path: '{{build.DownloadECXScript.inputs[2].destination}}'
+          - path: '{{build.DownloadECXScript.inputs[3].destination}}'
 
       - name: RebootAfterConfigApplied
         action: Reboot
@@ -44,8 +74,8 @@ phases:
         onFailure: Abort
         maxAttempts: 3
         inputs:
-          - source: 's3://<bucketname>/testECXConfig.ps1'
-            destination: 'C:\testECXConfig.ps1'
+          - source: 's3://ecxbucket/{{ECXTestScript}}'
+            destination: 'C:\{{ECXTestScript}}'
 
       - name: ValidateConfigScript
         action: ExecutePowerShell
