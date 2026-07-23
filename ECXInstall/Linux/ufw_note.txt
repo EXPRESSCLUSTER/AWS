@@ -21,19 +21,23 @@
                 echo "Open ports"
               fi
 
-              #Open ports
-              sudo ufw allow 29001:29004/tcp
-              sudo ufw allow 29008:29010/tcp
-              sudo ufw allow 29002:29003/udp
-              sudo ufw allow 29006/udp
+      - name: OpenFirewall
+        action: ExecuteBash
+        onFailure: Continue
+        inputs:
+          commands:
+            # Open ports through firewall
+            - sudo ufw allow 29001:29004/tcp
+            - sudo ufw allow 29008:29010/tcp
+            - sudo ufw allow 29002:29003/udp
+            - sudo ufw allow 29006/udp
 
-              # Ensure the systemd service starts on boot and runs now
-              sudo systemctl enable --now ufw
+            # Ensure the systemd service starts on boot and runs now
+            - sudo systemctl enable --now ufw
+            # Force the firewall rules to become active non-interactively
+            - sudo ufw --force enable
 
-              # Force the firewall rules to become active non-interactively
-              sudo ufw --force enable
-
-              sudo ufw status
+            - sudo ufw status
 
 ***Put this after CleanUP in the Ubuntu.yml file***
       - name: Reboot
