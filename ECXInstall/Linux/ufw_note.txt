@@ -1,3 +1,5 @@
+# The Ubuntu.yml file does not include firewall steps for ufw. Here are some steps to ensure that ufw is installed and configured. There is also a step to reboot the VM.
+
 FW=ufw
 which $FW > /dev/null 2>&1
 if [ $? -ne 0 ]; then
