@@ -1,32 +1,39 @@
 # The Ubuntu.yml file does not include firewall steps for ufw. Here are some steps to ensure that ufw is installed and configured. There is also a step to reboot the VM.
 
-FW=ufw
-which $FW > /dev/null 2>&1
-if [ $? -ne 0 ]; then
+      - name: CheckFirewall
+        action: ExecuteBash
+        onFailure: Continue
+        inputs:
+          commands:
+            - |
+              FW=ufw
+              which $FW > /dev/null 2>&1
+              if [ $? -ne 0 ]; then
                 echo "'$FW' is not installed"
                 #exit ${FWCTRL_ERR_CMDNOTFOUND}
                 echo "Installing ufw"
                 sudo apt install ufw
-		sudo ufw enable
-		sudo ufw status
+		        sudo ufw enable
+		        sudo ufw status
                 echo "Open ports"
               else
                 echo "'$FW' is installed."
                 echo "Open ports"
               fi
-#Open ports
-sudo ufw allow 29001:29004/tcp
-sudo ufw allow 29008:29010/tcp
-sudo ufw allow 29002:29003/udp
-sudo ufw allow 29006/udp
 
-# Ensure the systemd service starts on boot and runs now
-sudo systemctl enable --now ufw
+              #Open ports
+              sudo ufw allow 29001:29004/tcp
+              sudo ufw allow 29008:29010/tcp
+              sudo ufw allow 29002:29003/udp
+              sudo ufw allow 29006/udp
 
-# Force the firewall rules to become active non-interactively
-sudo ufw --force enable
+              # Ensure the systemd service starts on boot and runs now
+              sudo systemctl enable --now ufw
 
-sudo ufw status
+              # Force the firewall rules to become active non-interactively
+              sudo ufw --force enable
+
+              sudo ufw status
 
 ***Put this after CleanUP in the Ubuntu.yml file***
       - name: Reboot
