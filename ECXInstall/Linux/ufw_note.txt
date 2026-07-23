@@ -45,4 +45,3 @@
         onFailure: Continue
         inputs:
           delaySeconds: 60
-
