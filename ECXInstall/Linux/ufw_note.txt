@@ -39,7 +39,7 @@
 
             - sudo ufw status
 
-***Put this after CleanUP in the Ubuntu.yml file***
+#***Put this after CleanUP in the Ubuntu.yml file***
       - name: Reboot
         action: Reboot
         onFailure: Continue
