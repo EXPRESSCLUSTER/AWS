@@ -91,4 +91,5 @@ phases:
             - echo "ExpressCluster licenses"
             - sudo clplcnsc -l | grep -i 'cluster'
             - uname -a
+            - hostnamectl
             - systemctl --type=service | grep -i cluster
